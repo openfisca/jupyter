@@ -21,8 +21,25 @@ docker pull openfisca/jupyter
 Then you have to:
 
 - install [JupyterHub](https://github.com/jupyter/jupyterhub)
+```
+# apt-get install npm nodejs-legacy
+# npm install -g configurable-http-proxy
+# pip3 install jupyterhub
+```
 - install [DockerSpawner](https://github.com/jupyter/dockerspawner)
+```
+pip install git+https:github.com/jupyter/dockerspawner.git
+pip install -r requirements.txt
+python setup.py install
+
+```
 - install [OAuthenticator](https://github.com/jupyter/dockerspawner/tree/master/examples/oauth)
+
+```
+pip3 install oauthenticator
+
+```
+
 - create the [`nginx` configuration file](config/jupyter.nginx.conf) for your domain by replacing all the `example.com` occurences
 
 You need to define environment variables in [`env`](config/env).
