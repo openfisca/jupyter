@@ -2,31 +2,30 @@
 
 OpenFisca Jupyter notebook Docker container definition and examples
 
+Enables [JupyterHub](https://github.com/jupyter/jupyterhub) to spawn user servers in docker containers
+which have [`OpenFisca-Core`](https://github.com/openfisca/openfisca-core) and
+[`OpenFisca-France`](https://github.com/openfisca/openfisca-core) pre-installed,
+in a `python2` environement.
+
+This container is published on [Docker Hub](https://hub.docker.com/r/openfisca/jupyter/) and
+is based on the container [`jupyter/singleuser`](https://hub.docker.com/r/jupyter/singleuser/).
 
 ## Usage
-This Dockerfile contains the code of OpenFisca-core, OpenFisca-france and all the dependencies. 
 
-Based on the docker jupyter/singleuser, it's used by jupyterhub for work with openfisca in a python2 environnement.
-
-
-## Description
-
-For download the docker, make the next command : 
+To download the container: 
 
 ```
 docker pull openfisca/jupyter
-
 ```
 
-After, that you have to :
+Then you have to:
 
-- Install jupyterhub (https://github.com/jupyter/jupyterhub)
+- install [JupyterHub](https://github.com/jupyter/jupyterhub)
+- install [DockerSpawner](https://github.com/jupyter/dockerspawner)
+- install [OAuthenticator](https://github.com/jupyter/dockerspawner/tree/master/examples/oauth)
+- create the [`nginx` configuration file](config/jupyter.nginx.conf) for your domain by replacing all the `example.com` occurences
 
-- Install Dockerspawner (https://github.com/jupyter/dockerspawner)
+You need to define environment variables in [`env`](config/env).
 
-- Install Oauthenticator (https://github.com/jupyter/dockerspawner/tree/master/examples/oauth)
-- create the nginx configuration File.
-
-You need to specify variable environment, you can do this with a simply file, called env.
-
-For Finish, create a service file in /etc/systemd/system
+If you are using `systemd`, you can copy the [`systemd` service file](config/jupyterhub.service)
+in `/etc/systemd/system` and replace the template values between `<` and `>` by the actual values.
