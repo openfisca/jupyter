@@ -2,12 +2,12 @@
 Description=Jupyterhub
 
 [Service]
-WorkingDirectory=/home/cloud/jupyterhub/dockerspawner/jupyterdir/oauth/
+WorkingDirectory=</path/to/config>
 ExecStart=/bin/bash run.sh
 Restart=always
 RestartSec=10
-User=cloud
-Group=cloud
+User=<user>
+Group=<group>
 
 [Install]
 WantedBy=multi-user.target
